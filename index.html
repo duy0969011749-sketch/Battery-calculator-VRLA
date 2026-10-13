@@ -592,6 +592,81 @@
         #printBtns .button:hover .button__icon { width: 178px; transform: translateX(0); }
         #printBtns .button:active .button__icon { background-color: #146c54; }
         #printBtns .svg { width: 30px; fill: #ffffff; }
+        /* ─── Responsive: máy tính bảng & điện thoại ─── */
+        .formula-block { max-width: 100%; overflow-x: auto; }
+        @media (max-width: 1240px) {
+            .main-container { padding: 0 16px; }
+        }
+        @media (max-width: 900px) {
+            .main-container { grid-template-columns: 1fr; gap: 14px; margin: 14px auto; padding: 0 12px; }
+        }
+        @media (max-width: 640px) {
+            header { padding: 14px 14px 16px; }
+            .header-inner { flex-direction: column; align-items: stretch; gap: 12px; }
+            header h1 { font-size: 18px; line-height: 1.35; }
+            .badge-ieee { font-size: 11px; padding: 4px 10px; }
+            .header-right { justify-content: space-between; gap: 10px; }
+            .header-logo { width: auto; height: 44px; max-width: 60%; padding: 4px 10px; }
+            .lang-toggle { width: auto !important; height: 44px; font-size: 15px !important; padding: 6px 14px !important; }
+
+            .main-container { padding: 0 10px; margin: 10px auto; }
+            .card-header { padding: 11px 14px; font-size: 14px; }
+            .card-body { padding: 14px; }
+            label, .section-label { font-size: 14px; }
+
+            /* Cỡ chữ 16px để iPhone không tự phóng to khi chạm vào ô nhập */
+            input[type="number"], input[type="text"], select { font-size: 16px; padding: 11px 12px; }
+            .input-row select { width: 90px; flex: 0 0 90px; }
+
+            .brand-row { gap: 6px !important; }
+            .brand-btn { font-size: 13px; padding: 10px 4px; }
+
+            .kpi-grid { gap: 8px; }
+            .kpi-box { padding: 12px 8px; }
+            .kpi-value, .eod-box .kpi-value { font-size: 24px; }
+            .kpi-label, .kpi-unit { font-size: 12px; }
+            .eod-current-grid { grid-template-columns: 1fr; gap: 8px; }
+            .sys-grid { grid-template-columns: repeat(2, 1fr); }
+            .sys-box .sv { font-size: 17px; }
+
+            .step { padding: 10px 10px; }
+            .step-body { font-size: 13px; word-break: break-word; }
+            .formula-inline { white-space: normal; word-break: break-word; }
+            .temp-table td, .temp-table th { padding: 3px 4px; }
+            .opt-table { font-size: 13px; min-width: 460px; }
+            .opt-table th, .opt-table td { padding: 6px 6px; }
+            .rec-table td:first-child { width: 52%; padding-right: 6px; }
+
+            .print-grid { gap: 6px !important; }
+            .print-grid .btn-print { padding: 8px 4px !important; }
+            .print-grid .btn-print span { display: block; line-height: 1.3; }
+            .print-grid .btn-print span:first-child { font-size: 16px !important; }
+            .print-grid .btn-print span:last-child { font-size: 12px !important; }
+
+            /* Hộp kiểm tra ắc quy */
+            .modal-overlay.modal-visible { align-items: flex-end; }
+            .modal-box { width: 100vw; max-width: 100vw; max-height: 92vh; border-radius: 12px 12px 0 0; }
+            .modal-header { padding: 12px 14px; font-size: 15px; position: sticky; top: 0; z-index: 2; }
+            .modal-body { padding: 14px; }
+            .modal-grid { grid-template-columns: 1fr; gap: 14px; }
+            .modal-grid .modal-col:first-child > div[aria-hidden] { display: none; }
+            .req-info-wrap { padding: 10px 12px; }
+            #checkReqInfo { line-height: 1.8; }
+            .pdf-drop-zone { padding: 18px 10px; }
+            .btn-auto-check { white-space: normal; }
+            .chk-group input[type=text], .chk-group input[type=number] { font-size: 16px; padding: 10px; }
+            .radio-row label { padding: 4px 0; }
+            #printBtns .button { width: 100% !important; max-width: 320px; }
+            #printBtns .button__icon { right: 0; transform: none; }
+            #printBtns .button:hover .button__icon { width: 49px; }
+            #printBtns .button:hover .button__text { color: #ffffff; }
+        }
+        @media (max-width: 380px) {
+            header h1 { font-size: 16px; }
+            .kpi-value, .eod-box .kpi-value { font-size: 21px; }
+            .sys-box .sv { font-size: 15px; }
+            .brand-btn { font-size: 12px; }
+        }
     </style>
 </head>
 <body>
@@ -621,7 +696,7 @@
                 <label data-vi="Thương hiệu" data-en="Brand" style="font-size:15px; font-weight:500; margin-bottom:8px; display:block;">
                     <span data-vi="THƯƠNG HIỆU" data-en="BRAND">THƯƠNG HIỆU</span>
                 </label>
-                <div style="display:flex; gap:10px;">
+                <div class="brand-row" style="display:flex; gap:10px;">
                     <label class="brand-option" for="brand_securepower" style="flex:1; cursor:pointer;">
                         <input type="radio" id="brand_securepower" name="upsBrand" value="securepower" checked style="display:none;">
                         <div class="brand-btn" data-brand="securepower">
@@ -1233,7 +1308,7 @@ function calculate() {
     </div>
 
     <div class="no-print" style="margin-top:20px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;">
+      <div class="print-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px;">
         <button class="btn-print" onclick="printReport('vi')" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:10px 8px;">
           <span style="font-size:20px;" data-vi="In PDF" data-en="Print PDF">In PDF</span>
           <span style="font-size:13px;font-weight:500;">Tiếng Việt</span>
